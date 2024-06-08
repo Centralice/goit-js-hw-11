@@ -9,18 +9,17 @@
   </head>
   <body>
     <form class="search-form">
-      <input class="search-input" type="text" name="search" /><button
+      <input class="search-input" type="text" name="search" placeholder="Search images..." /><button
         class="search-btn"
         type="submit"
       >
         Search
       </button>
     </form>
-    <span class="loader"></span>
 
-    <div class="container">
-      
-    </div>
+    <div class="loader" is-on></div>
+
+    <div class="container"><ul></ul></div>
     <script type="module" src="./main.js"></script>
     <script type="module" src="./js/pixabay-api.js"></script>
     <script type="module" src="./js/render-functions.js"></script>

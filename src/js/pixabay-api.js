@@ -6,6 +6,8 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 
 import { createMarkup } from '/js/render-functions';
 
+const loader = document.querySelector('.loader');
+
 export function getImages(query) {
   const BASE_URL = 'https://pixabay.com/api/';
   const params = new URLSearchParams({
@@ -17,6 +19,8 @@ export function getImages(query) {
   });
   const url = `${BASE_URL}?${params}`;
 
+  loader.classList.add('is-on');
+
   return fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -24,7 +28,7 @@ export function getImages(query) {
         iziToast.error({
           message: 'Sorry, there are no images matching your search query',
           messageColor: '#ffffff',
-          backgroundColor: '#f4acb7',
+          backgroundColor: '#0077b6',
           position: 'topRight',
           timeout: 5000,
         });
@@ -37,9 +41,13 @@ export function getImages(query) {
           captionsData: 'alt',
           captionDelay: 250,
         });
-
         lightbox.refresh();
       }
-      
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    .finally(() => {
+      loader.classList.remove('is-on');
     });
 }

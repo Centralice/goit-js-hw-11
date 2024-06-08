@@ -5,11 +5,13 @@ import { getImages } from './js/pixabay-api';
 
 const formEl = document.querySelector('.search-form');
 const container = document.querySelector('.container');
+
 formEl.addEventListener('submit', handleSearch);
 
 function handleSearch(event) {
   event.preventDefault();
-  container.innerHTML = "";
+
+  container.innerHTML = '';
   const query = event.target.elements.search.value.trim();
   if (!query) {
     iziToast.error({
